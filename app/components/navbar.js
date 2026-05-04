@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const menu = [
   { name: "Home", id: "home" },
@@ -49,7 +50,7 @@ export default function navbar() {
   "
       >
         {/* kiri (logo) */}
-        <img src="/logo.png" className="h-6" />
+        <img src="/logo.png" className="h-10" />
 
         {/* kanan (menu) */}
         <div className="flex gap-2">
@@ -73,7 +74,7 @@ export default function navbar() {
               <span
                 className={
                   active === item.id
-                    ? "text-black relative z-10"
+                    ? "text-green-500 font-semibold relative z-10"
                     : "text-white/60 hover:text-white relative z-10"
                 }
               >

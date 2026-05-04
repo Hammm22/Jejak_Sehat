@@ -240,10 +240,10 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4 mt-2">
-              <a className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer">
+              <a className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer" href="https://instagram.com/ilham22008">
                 <FaInstagram />
               </a>
-              <a className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer">
+              <a className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer" href="https://github.com/Hammm22">
                 <FaGithub />
               </a>
             </div>
