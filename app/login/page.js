@@ -37,7 +37,7 @@ export default function Login() {
 
         <button
           type="submit"
-          className="mt-4 py-2 rounded-lg bg-green-500 text-black font-semibold hover:opacity-90 transition hover:cursor-pointer bg-green-600"
+          className="mt-4 py-2 rounded-lg bg-green-500 text-black font-semibold hover:opacity-90 transition hover:cursor-pointer"
         >
           Login
         </button>

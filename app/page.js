@@ -271,8 +271,9 @@ export default function Home() {
         </div>
 
         {/* bottom bar */}
-        <div className="border-t border-white/10 text-center py-4 text-sm text-gray-500">
-          © {new Date().getFullYear()} Jejak Sehat. All rights reserved.
+        <div className="flex flex-col border-t border-white/10 text-center py-4 text-sm text-gray-500">
+          © {new Date().getFullYear()} Jejak Sehat. All rights reserved.<br></br>
+          Made By Hamm22 A.K.A Ilham Dwi Arsandy
         </div>
       </footer>
     </>

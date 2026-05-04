@@ -61,11 +61,11 @@ export default function Navbar() {
       >
         {/* LOGO */}
         <Image
-          src="/logo.png"
+          src="/logo.jpg"
           alt="logo"
           width={100}
           height={100}
-          className="w-32 h-13"
+          className="w-32 h-13 rounded-4xl"
         />
 
         {/* MENU */}
