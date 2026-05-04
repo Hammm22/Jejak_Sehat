@@ -6,6 +6,8 @@ import { useRef } from "react";
 import TextType from "./components/typewriter";
 import SplitText from "./components/fadeintest";
 import SpotlightCard from "./components/card";
+import Link from "next/link";
+import BorderGlow from "./components/glowcard";
 import {
   FaLocationDot,
   FaChartSimple,
@@ -54,10 +56,19 @@ export default function Home() {
           />
 
           <div className="flex flex-row max-w-8/12 gap-12">
-            <motion.button className="bg-green-500 hover:bg-green-600 cursor-pointer text-white px-4 py-2 rounded-xl transition w-32 h-12 text-xl font-medium">
-              Start Now
-            </motion.button>
-            <motion.button className="bg-gray-500 hover:bg-gray-600 cursor-pointer text-white px-4 py-2 rounded-xl transition w-32 h-12 text-xl font-medium">
+            <Link href="/login">
+              <motion.button className="bg-green-500 hover:bg-green-600 cursor-pointer text-white px-4 py-2 rounded-xl transition w-32 h-12 text-xl font-medium">
+                Start Now
+              </motion.button>
+            </Link>
+            <motion.button
+              className="bg-gray-500 hover:bg-gray-600 cursor-pointer text-white px-4 py-2 rounded-xl transition w-32 h-12 text-xl font-medium"
+              onClick={() => {
+                document
+                  .getElementById("about")
+                  .scrollIntoView({ behavior: "smooth" });
+              }}
+            >
               About Us
             </motion.button>
           </div>
@@ -65,31 +76,34 @@ export default function Home() {
       </section>
 
       <section
-        id="about"
-        className="relative h-screen flex items-center justify-center"
-      >
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: -100 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="
-          flex flex-col items-center gap-14 justify-center p-20
-          bg-zinc-900 border border-white/10
-          shadow-[0_0_40px_rgba(255,255,255,0.05)]
-          w-9/12 rounded-4xl
-        "
-        >
-          <h2 className="text-white text-5xl font-semibold">ABOUT US</h2>
-          <SplitText
-            text="JejakSehat is a web-based application designed to help users track their daily journeys and monitor their health conditions in a simple and organized way. Through this platform, users can easily record important information such as location, time, and body temperature, allowing them to keep a clear record of their daily activities."
-            splitType="words"
-            delay={60}
-            duration={2}
-            className="text-2xl"
-          />
-        </motion.div>
-      </section>
+  id="about"
+  className="relative min-h-screen flex items-center justify-center px-6"
+>
+  <motion.div
+    ref={ref}
+    initial={{ opacity: 0, y: -80 }}
+    animate={isInView ? { opacity: 1, y: 0 } : {}}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    className="w-full max-w-5xl"
+  >
+    <BorderGlow className="flex flex-col items-center text-center gap-8 p-10 bg-[#18181B] rounded-3xl border border-white/10" colors={['#ffffff', '#18181B', '#4DD658']} backgroundColor="#09090B"
+>
+      
+      <h2 className="text-white text-4xl md:text-5xl font-semibold">
+        ABOUT US
+      </h2>
+
+      <SplitText
+        text="JejakSehat is a web-based application designed to help users track their daily journeys and monitor their health conditions in a simple and organized way. Through this platform, users can easily record important information such as location, time, and body temperature, allowing them to keep a clear record of their daily activities."
+        splitType="words"
+        delay={40}
+        duration={1.5}
+        className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed"
+      />
+
+    </BorderGlow>
+  </motion.div>
+</section>
 
       <section
         id="features"
@@ -240,10 +254,16 @@ export default function Home() {
             </div>
 
             <div className="flex gap-4 mt-2">
-              <a className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer" href="https://instagram.com/ilham22008">
+              <a
+                className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer"
+                href="https://instagram.com/ilham22008"
+              >
                 <FaInstagram />
               </a>
-              <a className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer" href="https://github.com/Hammm22">
+              <a
+                className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer"
+                href="https://github.com/Hammm22"
+              >
                 <FaGithub />
               </a>
             </div>
