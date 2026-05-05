@@ -19,7 +19,7 @@ model Catatan {
 
   @@map("Catatan")
 }
-
+  
 model User {
   nik      Int    @id @map("nik")
   nama     String @map("nama")

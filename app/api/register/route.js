@@ -1,63 +1,71 @@
-import { prisma, Prisma } from "@/lib/prisma";
+import { prisma } from "../../../lib/prisma";
 import { NextResponse } from "next/server";
-import formidable from "formidable";
-import path from "path";
 import bcrypt from "bcrypt";
-
-export const config = {
-  api: { bodyParser: false },
-};
+import fs from "fs";
+import path from "path";
 
 export async function POST(req) {
-  const form = formidable({
-    uploadDir: "./public/uploads",
-    keepExtensions: true,
-  });
+  try {
+    const formData = await req.formData();
 
-  return new Promise((resolve, reject) => {
-    form.parse(req, async (err, fields, files) => {
-      if (err) return reject(err);
-      try {
-        const nik = fields.nik?.[0];
-        const nama = fields.nama?.[0];
-        const password = fields.password?.[0];
+    const nik = formData.get("nik");
+    const nama = formData.get("nama");
+    const password = formData.get("password");
+    const file = formData.get("profil");
 
-        if (!nik || !nama || !password) {
-          return resolve(
-            NextResponse.json({ error: "Data tidak lengkap" }, { status: 400 }),
-          );
-        }
+    if (!nik || !nama || !password) {
+      return NextResponse.json(
+        { error: "Data tidak lengkap" },
+        { status: 400 }
+      );
+    }
 
-        const exist = await prisma.User.findUnique({ where: { nik } });
-        if (exist) {
-          return resolve(
-            NextResponse.json(
-              { error: "NIK Sudah terdaftar" },
-              { status: 400 },
-            ),
-          );
-        }
+    const nikNumber = Number(nik);
 
-        const file = files.profil?.[0];
-        const profilPath = file
-          ? "/uploads/" + path.basename(file.filePath)
-          : null;
-
-        const hashed = await bcrypt.hash(password, 10);
-
-        const User = await prisma.User.create({
-          data: {
-            nik,
-            nama,
-            password: hashed,
-            profil: profilPath,
-          },
-        });
-
-        resolve(NextResponse.json(User));
-      } catch (e) {
-        resolve(NextResponse.json({ error: e.message }, { status: 500 }));
-      }
+    // cek user
+    const exist = await prisma.user.findUnique({
+      where: { nik: nikNumber },
     });
-  });
+
+    if (exist) {
+      return NextResponse.json(
+        { error: "NIK sudah terdaftar" },
+        { status: 400 }
+      );
+    }
+
+    // 🔥 handle upload file
+    let profilPath = null;
+
+    if (file && file.size > 0) {
+      const bytes = await file.arrayBuffer();
+      const buffer = Buffer.from(bytes);
+
+      const filename = Date.now() + "-" + file.name;
+      const uploadPath = path.join(process.cwd(), "public/uploads", filename);
+
+      fs.writeFileSync(uploadPath, buffer);
+
+      profilPath = "/uploads/" + filename;
+    }
+
+    // 🔐 hash password
+    const hashed = await bcrypt.hash(password, 10);
+
+    const user = await prisma.user.create({
+      data: {
+        nik: nikNumber,
+        nama,
+        password: hashed,
+        profil: profilPath,
+      },
+    });
+
+    return NextResponse.json(user);
+  } catch (err) {
+    return NextResponse.json(
+      { error: err.message },
+      { status: 500 }
+    );
+  }
 }

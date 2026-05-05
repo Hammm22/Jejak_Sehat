@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaUserCircle } from "react-icons/fa";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const guestMenu = [
   { name: "Home", id: "home" },
@@ -14,24 +15,28 @@ const guestMenu = [
 ];
 
 const authMenu = [
-  { name: "Home", href: "/dashboard" },
+  { name: "Home", id: "home" },
+  { name: "Laporan", id: "laporan" },
   { name: "Catat", href: "/catat" },
-  { name: "Laporan", href: "/laporan" },
 ];
 
 export default function Navbar() {
   const router = useRouter();
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const pathname = usePathname();
 
   const [active, setActive] = useState("home");
+
+  const isLoggedIn =
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/catat") ||
+    pathname.startsWith("/laporan");
 
   const menuData = isLoggedIn ? authMenu : guestMenu;
 
   useEffect(() => {
-    if (isLoggedIn) return;
-
-    const sections = guestMenu.map((item) => document.getElementById(item.id));
+    const sections = menuData
+      .filter((item) => item.id)
+      .map((item) => document.getElementById(item.id));
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -74,9 +79,9 @@ export default function Navbar() {
             <button
               key={item.name}
               onClick={() => {
-                if (isLoggedIn) {
+                if (item.href) {
                   router.push(item.href);
-                } else {
+                } else if (item.id) {
                   document
                     .getElementById(item.id)
                     ?.scrollIntoView({ behavior: "smooth" });
@@ -85,7 +90,7 @@ export default function Navbar() {
               className="relative px-4 py-1.5 text-sm font-medium"
             >
               {/* ACTIVE INDICATOR hanya di guest */}
-              {!isLoggedIn && active === item.id && (
+              {active === item.id && (
                 <motion.div
                   layoutId="nav-pill"
                   className="absolute inset-0 bg-white/80 rounded-full"
@@ -94,7 +99,7 @@ export default function Navbar() {
 
               <span
                 className={
-                  !isLoggedIn && active === item.id
+                  active === item.id
                     ? "text-green-500 font-semibold relative z-10"
                     : "text-white/60 hover:text-white relative z-10"
                 }

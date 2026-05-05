@@ -1,5 +1,5 @@
 import { prisma } from "../../lib/prisma";
-import Layout from "./dashboardLayout";
+import Layout from "../components/dashboardLayout";
 import Navbar from "../components/navbar";
 import TripCards from "../components/TripCards";
 import WeeklyChart from "../components/WeeklyChart";
@@ -25,19 +25,15 @@ export default async function Page() {
   return (
     <Layout>
       <Navbar />
-      <main className="min-h-screen bg-[#09090B] text-white p-6 pt-52 space-y-10 max-w-6xl mx-auto">
-        <h1 className="text-5xl font-bold text-center">Dashboard</h1>
-
-        {/* CHART */}
-        <section>
-          <h2 className="text-xl mb-4">Statistik Mingguan</h2>
-          <WeeklyChart data={chartData} />
-        </section>
-
-        {/* CARDS */}
-        <section>
+      <main className="min-h-screen bg-[#09090B] text-white p-6 space-y-10 max-w-6xl mx-auto justify-center items-center">
+        <section className="h-screen py-64" id="home">
           <h2 className="text-xl mb-4">Riwayat Perjalanan</h2>
           <TripCards data={catatan} />
+        </section>
+
+        <section className="h-screen py-64" id="laporan">
+          <h2 className="text-xl mb-4">Statistik Mingguan</h2>
+          <WeeklyChart data={chartData} />
         </section>
       </main>
     </Layout>
