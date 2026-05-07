@@ -66,7 +66,7 @@ export default function Navbar() {
         transition={{ duration: 0.6 }}
         className="flex items-center justify-between px-4 py-2 bg-white/10 backdrop-blur-xl rounded-full border border-white/20"
       >
-        {/* LOGO */}
+        
         <Image
           src="/logo.jpg"
           alt="logo"
@@ -75,7 +75,7 @@ export default function Navbar() {
           className="w-32 h-13 rounded-4xl"
         />
 
-        {/* MENU */}
+      
         <div className="flex gap-2 items-center">
           {menuData.map((item) => (
             <button
@@ -91,7 +91,7 @@ export default function Navbar() {
               }}
               className="relative px-4 py-1.5 text-sm font-medium"
             >
-              {/* ACTIVE INDICATOR hanya di guest */}
+              
               {active === item.id && (
                 <motion.div
                   layoutId="nav-pill"

@@ -14,7 +14,6 @@ export default function Register() {
 
   const fileInputRef = useRef(null);
 
-  // 🔥 handle image preview
   const handleImage = (e) => {
     const f = e.target.files[0];
     if (f) {
@@ -23,7 +22,6 @@ export default function Register() {
     }
   };
 
-  // 🔥 handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -45,7 +43,7 @@ export default function Register() {
       const data = await res.json();
 
       if (res.ok) {
-        toast.success("Register berhasil 🚀");
+        toast.success("Register berhasil");
         window.location.href = "/login";
       } else {
         alert(data.error);
@@ -69,8 +67,6 @@ export default function Register() {
           </h2>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-
-            {/* NIK */}
             <div className="flex flex-col gap-1 text-left">
               <label className="text-sm text-gray-400">NIK:</label>
               <input
@@ -82,7 +78,6 @@ export default function Register() {
               />
             </div>
 
-            {/* Username */}
             <div className="flex flex-col gap-1 text-left">
               <label className="text-sm text-gray-400">Username:</label>
               <input
@@ -94,7 +89,6 @@ export default function Register() {
               />
             </div>
 
-            {/* Password */}
             <div className="flex flex-col gap-1 text-left">
               <label className="text-sm text-gray-400">Password:</label>
               <input
@@ -106,7 +100,6 @@ export default function Register() {
               />
             </div>
 
-            {/* Upload Photo */}
             <div className="flex flex-col gap-2 items-center">
               <label className="text-sm text-gray-400 self-start">Photo:</label>
 
@@ -140,7 +133,6 @@ export default function Register() {
               />
             </div>
 
-            {/* Login link */}
             <h4 className="text-sm text-gray-400">
               Have an account?
               <a href="/login" className="text-green-500 ml-1">
@@ -148,14 +140,12 @@ export default function Register() {
               </a>
             </h4>
 
-            {/* Submit */}
             <button
               type="submit"
               className="mt-4 py-2 rounded-lg bg-green-500 text-black font-semibold hover:opacity-90 transition"
             >
               Register
             </button>
-
           </form>
         </BorderGlow>
       </div>

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 export default function Login() {
-  const [nik, setNik] = useState("");
+  const [nama, setNama] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -18,7 +18,7 @@ export default function Login() {
 
     try {
       const res = await signIn("credentials", {
-        nik,
+        nama,
         password,
         redirect: false,
       });
@@ -27,7 +27,7 @@ export default function Login() {
         router.push("/dashboard");
         router.refresh();
       } else {
-        alert("NIK atau password salah");
+        alert("Nama atau password salah");
       }
     } catch (err) {
       console.error(err);
@@ -49,19 +49,17 @@ export default function Login() {
           </h2>
 
           <form onSubmit={handleLogin} className="flex flex-col gap-4">
-            {/* NIK */}
             <div className="flex flex-col gap-1 text-left">
-              <label className="text-sm text-gray-400">NIK:</label>
+              <label className="text-sm text-gray-400">Nama:</label>
               <input
                 type="text"
-                value={nik}
-                onChange={(e) => setNik(e.target.value)}
+                value={nama}
+                onChange={(e) => setNama(e.target.value)}
                 className="px-4 py-2 rounded-lg bg-[#09090B] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Enter your NIK"
+                placeholder="Enter your Nama"
               />
             </div>
 
-            {/* Password */}
             <div className="flex flex-col gap-1 text-left">
               <label className="text-sm text-gray-400">Password:</label>
               <input
@@ -73,7 +71,6 @@ export default function Login() {
               />
             </div>
 
-            {/* Link */}
             <h4 className="text-sm text-gray-400">
               Doesn't have an account?
               <a href="/register" className="text-green-500 ml-1">
@@ -81,7 +78,6 @@ export default function Login() {
               </a>
             </h4>
 
-            {/* Button */}
             <button
               type="submit"
               disabled={loading}

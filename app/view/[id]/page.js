@@ -24,7 +24,7 @@ export default async function Page({ params }) {
             colors={["#ffffff", "#18181B", "#4DD658"]}
             backgroundColor="#09090B"
           >
-            {/* HEADER */}
+          
             <div className="text-center mb-6">
               <h1 className="text-2xl font-semibold">{data.nama_tempat}</h1>
               <p className="text-gray-400 text-sm mt-1">
@@ -32,7 +32,7 @@ export default async function Page({ params }) {
               </p>
             </div>
 
-            {/* CONTENT */}
+            
             <div className="space-y-4 text-sm">
               <div className="flex justify-between border-b border-white/10 pb-2">
                 <span className="text-gray-400">Tanggal</span>

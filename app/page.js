@@ -179,7 +179,7 @@ export default function Home() {
                 transition={{
                   duration: 0.6,
                   ease: "easeOut",
-                  delay: index * 0.2, // 🔥 delay antar item
+                  delay: index * 0.2,
                 }}
                 viewport={{ once: true }}
               >
@@ -202,11 +202,9 @@ export default function Home() {
       </section>
 
       <footer className="relative mt-40 border-t border-white/10 bg-zinc-950">
-        {/* glow top biar nyambung */}
         <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[60%] h-32 bg-green-500/10 blur-3xl rounded-full" />
 
         <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10 text-white">
-          {/* Brand */}
           <div className="flex flex-col gap-4">
             <h2 className="text-2xl font-semibold text-green-500">
               JEJAK SEHAT
@@ -217,7 +215,6 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Navigation */}
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Navigation</h3>
             <a
@@ -246,7 +243,6 @@ export default function Home() {
             </a>
           </div>
 
-          {/* Contact / Social */}
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Connect</h3>
 
@@ -272,7 +268,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* bottom bar */}
         <div className="flex flex-col border-t border-white/10 text-center py-4 text-sm text-gray-500">
           © {new Date().getFullYear()} Jejak Sehat. All rights reserved.
           <br></br>
