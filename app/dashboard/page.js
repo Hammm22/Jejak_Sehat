@@ -41,21 +41,153 @@ export default async function Page() {
     <Layout>
       <Navbar />
 
-      <main className="min-h-screen bg-[#09090B] text-white p-6 space-y-10 max-w-6xl mx-auto">
-        <div className="pt-32">
-          <h1 className="text-4xl font-bold">Welcome, {session.user.nama}</h1>
+      <main
+        className="
+          min-h-screen
+          bg-[#09090B]
+          text-white
+          px-4
+          sm:px-6
+          lg:px-8
+          py-6
+          space-y-16
+          max-w-7xl
+          mx-auto
+        "
+      >
+        {/* HEADER */}
+        <section
+          className="
+            pt-24
+            sm:pt-28
+            md:pt-32
+            flex
+            flex-col
+            gap-3
+          "
+        >
+          <h1
+            className="
+              text-3xl
+              sm:text-4xl
+              md:text-5xl
+              font-bold
+              break-words
+            "
+          >
+            Welcome, {session.user.nama}
+          </h1>
 
-          <p className="text-gray-400 mt-2">Kelola catatan perjalanan kamu</p>
-        </div>
-
-        <section className="min-h-screen py-20" id="home">
-          <h2 className="text-xl mb-4">Riwayat Perjalanan</h2>
-          <TripCards data={catatan} />
+          <p
+            className="
+              text-sm
+              sm:text-base
+              text-gray-400
+            "
+          >
+            Kelola catatan perjalanan kamu
+          </p>
         </section>
 
-        <section className="min-h-screen py-20" id="laporan">
-          <h2 className="text-xl mb-4">Statistik Mingguan</h2>
-          <WeeklyChart data={chartData} />
+        {/* TRIP HISTORY */}
+        <section
+          className="
+            min-h-screen
+            py-6
+            sm:py-10
+          "
+          id="home"
+        >
+          <div
+            className="
+              flex
+              flex-col
+              sm:flex-row
+              sm:items-center
+              sm:justify-between
+              gap-3
+              mb-6
+            "
+          >
+            <h2
+              className="
+                text-2xl
+                sm:text-3xl
+                font-semibold
+              "
+            >
+              Riwayat Perjalanan
+            </h2>
+
+            <span
+              className="
+                text-sm
+                text-gray-400
+              "
+            >
+              Total: {catatan.length} perjalanan
+            </span>
+          </div>
+
+          <div className="w-full overflow-hidden">
+            <TripCards data={catatan} />
+          </div>
+        </section>
+
+        {/* WEEKLY CHART */}
+        <section
+          className="
+            min-h-screen
+            py-6
+            sm:py-10
+          "
+          id="laporan"
+        >
+          <div
+            className="
+              flex
+              flex-col
+              sm:flex-row
+              sm:items-center
+              sm:justify-between
+              gap-3
+              mb-6
+            "
+          >
+            <h2
+              className="
+                text-2xl
+                sm:text-3xl
+                font-semibold
+              "
+            >
+              Statistik Mingguan
+            </h2>
+
+            <span
+              className="
+                text-sm
+                text-gray-400
+              "
+            >
+              Aktivitas 7 hari terakhir
+            </span>
+          </div>
+
+          <div
+            className="
+              w-full
+              overflow-x-auto
+              rounded-2xl
+              border
+              border-white/10
+              bg-[#18181B]
+              p-3
+              sm:p-6
+            "
+          >
+            <WeeklyChart data={chartData} />
+          </div>
         </section>
       </main>
     </Layout>

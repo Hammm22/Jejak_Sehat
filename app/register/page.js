@@ -16,6 +16,7 @@ export default function Register() {
 
   const handleImage = (e) => {
     const f = e.target.files[0];
+
     if (f) {
       setPreview(URL.createObjectURL(f));
       setFile(f);
@@ -27,6 +28,7 @@ export default function Register() {
 
     try {
       const formData = new FormData();
+
       formData.append("nik", nik);
       formData.append("nama", nama);
       formData.append("password", password);
@@ -46,7 +48,7 @@ export default function Register() {
         toast.success("Register berhasil");
         window.location.href = "/login";
       } else {
-        alert(data.error);
+        toast.error(data.error || "Register gagal");
       }
     } catch (err) {
       toast.error("Terjadi error");
@@ -55,72 +57,210 @@ export default function Register() {
   };
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[#09090B]">
+    <main
+      className="
+        min-h-screen
+        flex
+        items-center
+        justify-center
+        bg-[#09090B]
+        px-4
+        py-10
+      "
+    >
       <div className="w-full max-w-md">
         <BorderGlow
-          className="flex flex-col gap-6 p-8 bg-[#18181B] rounded-2xl border border-white/10 shadow-xl"
+          className="
+            flex
+            flex-col
+            gap-6
+            p-5
+            sm:p-8
+            bg-[#18181B]
+            rounded-2xl
+            border
+            border-white/10
+            shadow-xl
+          "
           colors={["#ffffff", "#18181B", "#4DD658"]}
           backgroundColor="#09090B"
         >
-          <h2 className="text-3xl font-semibold text-center text-white">
+          {/* TITLE */}
+          <h2
+            className="
+              text-2xl
+              sm:text-3xl
+              font-semibold
+              text-center
+              text-white
+            "
+          >
             REGISTER
           </h2>
 
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <div className="flex flex-col gap-1 text-left">
-              <label className="text-sm text-gray-400">NIK:</label>
+          {/* FORM */}
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-4"
+          >
+            {/* NIK */}
+            <div className="flex flex-col gap-2 text-left">
+              <label className="text-sm text-gray-400">
+                NIK
+              </label>
+
               <input
                 type="text"
                 value={nik}
                 onChange={(e) => setNik(e.target.value)}
-                className="px-4 py-2 rounded-lg bg-[#09090B] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Enter your NIK"
+                className="
+                  w-full
+                  px-4
+                  py-3
+                  rounded-lg
+                  bg-[#09090B]
+                  border
+                  border-white/10
+                  text-white
+                  text-sm
+                  sm:text-base
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-green-500
+                "
               />
             </div>
 
-            <div className="flex flex-col gap-1 text-left">
-              <label className="text-sm text-gray-400">Username:</label>
+            {/* USERNAME */}
+            <div className="flex flex-col gap-2 text-left">
+              <label className="text-sm text-gray-400">
+                Username
+              </label>
+
               <input
                 type="text"
                 value={nama}
                 onChange={(e) => setNama(e.target.value)}
-                className="px-4 py-2 rounded-lg bg-[#09090B] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Enter your username"
+                className="
+                  w-full
+                  px-4
+                  py-3
+                  rounded-lg
+                  bg-[#09090B]
+                  border
+                  border-white/10
+                  text-white
+                  text-sm
+                  sm:text-base
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-green-500
+                "
               />
             </div>
 
-            <div className="flex flex-col gap-1 text-left">
-              <label className="text-sm text-gray-400">Password:</label>
+            {/* PASSWORD */}
+            <div className="flex flex-col gap-2 text-left">
+              <label className="text-sm text-gray-400">
+                Password
+              </label>
+
               <input
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="px-4 py-2 rounded-lg bg-[#09090B] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
                 placeholder="Enter your password"
+                className="
+                  w-full
+                  px-4
+                  py-3
+                  rounded-lg
+                  bg-[#09090B]
+                  border
+                  border-white/10
+                  text-white
+                  text-sm
+                  sm:text-base
+                  focus:outline-none
+                  focus:ring-2
+                  focus:ring-green-500
+                "
               />
             </div>
 
-            <div className="flex flex-col gap-2 items-center">
-              <label className="text-sm text-gray-400 self-start">Photo:</label>
+            {/* IMAGE */}
+            <div className="flex flex-col gap-3 items-center">
+              <label className="text-sm text-gray-400 self-start">
+                Photo
+              </label>
 
               <div
-                onClick={() => fileInputRef.current.click()}
-                className="relative w-28 h-28 rounded-full cursor-pointer group hover:scale-105 transition"
+                onClick={() => fileInputRef.current?.click()}
+                className="
+                  relative
+                  w-24
+                  h-24
+                  sm:w-28
+                  sm:h-28
+                  rounded-full
+                  cursor-pointer
+                  group
+                  hover:scale-105
+                  transition
+                  duration-300
+                "
               >
                 {preview ? (
                   <img
                     src={preview}
                     alt="preview"
-                    className="w-full h-full rounded-full object-cover border border-white/10"
+                    className="
+                      w-full
+                      h-full
+                      rounded-full
+                      object-cover
+                      border
+                      border-white/10
+                    "
                   />
                 ) : (
-                  <div className="w-full h-full rounded-full bg-[#09090B] border border-white/10 flex items-center justify-center text-gray-500 text-xs">
+                  <div
+                    className="
+                      w-full
+                      h-full
+                      rounded-full
+                      bg-[#09090B]
+                      border
+                      border-white/10
+                      flex
+                      items-center
+                      justify-center
+                      text-gray-500
+                      text-xs
+                      sm:text-sm
+                    "
+                  >
                     No Image
                   </div>
                 )}
 
-                <div className="absolute inset-0 bg-black/50 rounded-full opacity-0 group-hover:opacity-100 flex items-center justify-center transition">
-                  <FaCamera className="text-white text-xl" />
+                <div
+                  className="
+                    absolute
+                    inset-0
+                    bg-black/50
+                    rounded-full
+                    opacity-0
+                    group-hover:opacity-100
+                    flex
+                    items-center
+                    justify-center
+                    transition
+                  "
+                >
+                  <FaCamera className="text-white text-lg sm:text-xl" />
                 </div>
               </div>
 
@@ -133,16 +273,46 @@ export default function Register() {
               />
             </div>
 
-            <h4 className="text-sm text-gray-400">
+            {/* LOGIN */}
+            <p
+              className="
+                text-sm
+                text-gray-400
+                text-center
+                sm:text-left
+              "
+            >
               Have an account?
-              <a href="/login" className="text-green-500 ml-1">
+              <a
+                href="/login"
+                className="
+                  text-green-500
+                  ml-1
+                  hover:text-green-400
+                  transition
+                "
+              >
                 Login
               </a>
-            </h4>
+            </p>
 
+            {/* BUTTON */}
             <button
               type="submit"
-              className="mt-4 py-2 rounded-lg bg-green-500 text-black font-semibold hover:opacity-90 transition"
+              className="
+                mt-2
+                w-full
+                py-3
+                rounded-lg
+                bg-green-500
+                text-black
+                font-semibold
+                text-sm
+                sm:text-base
+                hover:opacity-90
+                transition
+                cursor-pointer
+              "
             >
               Register
             </button>

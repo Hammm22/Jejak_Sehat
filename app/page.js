@@ -1,4 +1,5 @@
 "use client";
+
 import Aurora from "./components/aurora";
 import Navbar from "./components/navbar";
 import { motion, useInView } from "framer-motion";
@@ -22,10 +23,17 @@ export default function Home() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
+  const fadeUp = {
+    initial: { opacity: 0, y: 40 },
+    whileInView: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, ease: "easeOut" },
+    viewport: { once: true },
+  };
+
   const MainFeatures = [
-    { id: 1, title: "LOGGING\n TRIPS", icon: FaLocationDot },
-    { id: 2, title: "TRIPS\n REPORT", icon: FaChartSimple },
-    { id: 3, title: "ACCOUNT\n SAFETY", icon: FaLock },
+    { id: 1, title: "LOGGING\nTRIPS", icon: FaLocationDot },
+    { id: 2, title: "TRIPS\nREPORT", icon: FaChartSimple },
+    { id: 3, title: "ACCOUNT\nSAFETY", icon: FaLock },
   ];
 
   const HowToUse = [
@@ -36,19 +44,34 @@ export default function Home() {
   ];
 
   return (
-    <>
-      <section className="relative h-screen overflow-hidden" id="home">
+    <div className="overflow-x-hidden bg-black text-white">
+      {/* HERO */}
+      <section
+        className="relative min-h-screen overflow-hidden"
+        id="home"
+      >
         <Navbar />
+
         <div className="absolute inset-0 -z-10">
           <Aurora />
         </div>
-        <div className="h-screen relative z-10 flex flex-col justify-center items-center gap-10">
+
+        <div className="relative z-10 min-h-screen flex flex-col justify-center items-center gap-10 px-4">
           <TextType
-            className="text-6xl font-semibold text-center h-2/12 "
+            className="
+              text-3xl
+              sm:text-4xl
+              md:text-5xl
+              lg:text-6xl
+              font-semibold
+              text-center
+              leading-tight
+              max-w-6xl
+            "
             text={[
               "JEJAK SEHAT",
-              "RECORD YOUR TRAVEL & MONITOR YOUR \nHEALTH DAILY",
-              "SIMPLE APP FOR LOGGING TRIPS, LOCATION \n AND PHOTOS!",
+              "RECORD YOUR TRAVEL & MONITOR YOUR HEALTH DAILY",
+              "SIMPLE APP FOR LOGGING TRIPS, LOCATION AND PHOTOS!",
             ]}
             typingSpeed={75}
             deletingSpeed={60}
@@ -56,29 +79,76 @@ export default function Home() {
             cursorBlinkDuration={0.4}
           />
 
-          <div className="flex flex-row max-w-8/12 gap-12">
-            <Link href="/login">
-              <motion.button className="bg-green-500 hover:bg-green-600 cursor-pointer text-white px-4 py-2 rounded-xl transition w-32 h-12 text-xl font-medium">
+          <div
+            className="
+              flex
+              flex-col
+              sm:flex-row
+              gap-4
+              w-full
+              sm:w-auto
+              px-4
+              justify-center
+            "
+          >
+            <Link href="/login" className="w-full sm:w-auto">
+              <button
+                className="
+                  bg-green-500
+                  hover:bg-green-600
+                  transition
+                  text-white
+                  font-medium
+                  rounded-xl
+                  px-6
+                  py-3
+                  text-base
+                  sm:text-lg
+                  w-full
+                  cursor-pointer
+                "
+              >
                 Start Now
-              </motion.button>
+              </button>
             </Link>
-            <motion.button
-              className="bg-gray-500 hover:bg-gray-600 cursor-pointer text-white px-4 py-2 rounded-xl transition w-32 h-12 text-xl font-medium"
-              onClick={() => {
-                document
-                  .getElementById("about")
-                  .scrollIntoView({ behavior: "smooth" });
-              }}
-            >
-              About Us
-            </motion.button>
+
+            <a href="#about" className="w-full sm:w-auto">
+              <button
+                className="
+                  bg-zinc-700
+                  hover:bg-zinc-600
+                  transition
+                  text-white
+                  font-medium
+                  rounded-xl
+                  px-6
+                  py-3
+                  text-base
+                  sm:text-lg
+                  w-full
+                  cursor-pointer
+                "
+              >
+                About Us
+              </button>
+            </a>
           </div>
         </div>
       </section>
 
+      {/* ABOUT */}
       <section
         id="about"
-        className="relative min-h-screen flex items-center justify-center px-6"
+        className="
+          relative
+          min-h-screen
+          flex
+          items-center
+          justify-center
+          px-4
+          sm:px-6
+          py-20
+        "
       >
         <motion.div
           ref={ref}
@@ -88,11 +158,30 @@ export default function Home() {
           className="w-full max-w-5xl"
         >
           <BorderGlow
-            className="flex flex-col items-center text-center gap-8 p-10 bg-[#18181B] rounded-3xl border border-white/10"
+            className="
+              flex
+              flex-col
+              items-center
+              text-center
+              gap-8
+              p-6
+              sm:p-10
+              bg-[#18181B]
+              rounded-3xl
+              border
+              border-white/10
+            "
             colors={["#ffffff", "#18181B", "#4DD658"]}
             backgroundColor="#09090B"
           >
-            <h2 className="text-white text-4xl md:text-5xl font-semibold">
+            <h2
+              className="
+                text-3xl
+                sm:text-4xl
+                md:text-5xl
+                font-semibold
+              "
+            >
               ABOUT US
             </h2>
 
@@ -101,26 +190,60 @@ export default function Home() {
               splitType="words"
               delay={40}
               duration={1.5}
-              className="text-lg md:text-xl text-gray-400 max-w-2xl leading-relaxed"
+              className="
+                text-base
+                sm:text-lg
+                md:text-xl
+                text-gray-400
+                max-w-2xl
+                leading-relaxed
+                px-2
+              "
             />
           </BorderGlow>
         </motion.div>
       </section>
 
+      {/* FEATURES */}
       <section
         id="features"
-        className="h-screen flex items-center justify-center flex-col gap-20"
+        className="
+          min-h-screen
+          flex
+          items-center
+          justify-center
+          flex-col
+          gap-16
+          py-20
+          px-4
+        "
       >
         <motion.h1
-          className="text-6xl font-semibold"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true }}
+          className="
+            text-3xl
+            sm:text-4xl
+            md:text-5xl
+            lg:text-6xl
+            font-semibold
+            text-center
+          "
+          {...fadeUp}
         >
           MAIN FEATURES
         </motion.h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl w-full px-6">
+
+        <div
+          className="
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-3
+            gap-6
+            md:gap-10
+            max-w-6xl
+            w-full
+          "
+        >
           {MainFeatures.map((features, index) => {
             const Icon = features.icon;
 
@@ -132,19 +255,42 @@ export default function Home() {
                 transition={{
                   duration: 0.6,
                   ease: "easeOut",
-                  delay: index * 0.2, // 🔥 delay antar item
+                  delay: index * 0.2,
                 }}
                 viewport={{ once: true }}
               >
                 <SpotlightCard
-                  className="custom-spotlight-card p-6 flex flex-col items-center justify-center gap-4"
+                  className="
+                    custom-spotlight-card
+                    p-4
+                    sm:p-6
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    gap-4
+                    min-h-[220px]
+                  "
                   spotlightColor="rgba(77, 214, 88, 1)"
                 >
-                  {Icon && (
-                    <Icon className="text-5xl text-green-500 drop-shadow-[0_0_10px_rgba(34,197,94,0.7)]" />
-                  )}
+                  <Icon
+                    className="
+                      text-4xl
+                      sm:text-5xl
+                      text-green-500
+                      drop-shadow-[0_0_10px_rgba(34,197,94,0.7)]
+                    "
+                  />
 
-                  <h2 className="text-center text-2xl font-semibold">
+                  <h2
+                    className="
+                      text-center
+                      text-xl
+                      sm:text-2xl
+                      font-semibold
+                      whitespace-pre-line
+                    "
+                  >
                     {features.title}
                   </h2>
                 </SpotlightCard>
@@ -154,20 +300,45 @@ export default function Home() {
         </div>
       </section>
 
+      {/* HOW TO USE */}
       <section
         id="steps"
-        className="h-screen flex items-center justify-center flex-col gap-20"
+        className="
+          min-h-screen
+          flex
+          items-center
+          justify-center
+          flex-col
+          gap-16
+          py-20
+          px-4
+        "
       >
         <motion.h1
-          className="text-6xl font-semibold"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true }}
+          className="
+            text-3xl
+            sm:text-4xl
+            md:text-5xl
+            lg:text-6xl
+            font-semibold
+            text-center
+          "
+          {...fadeUp}
         >
           HOW TO USE
         </motion.h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-6xl w-full px-6">
+
+        <div
+          className="
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            gap-6
+            md:gap-10
+            max-w-6xl
+            w-full
+          "
+        >
           {HowToUse.map((steps, index) => {
             const Icon = steps.icon;
 
@@ -184,14 +355,36 @@ export default function Home() {
                 viewport={{ once: true }}
               >
                 <SpotlightCard
-                  className="custom-spotlight-card p-6 flex flex-col items-center justify-center gap-4"
+                  className="
+                    custom-spotlight-card
+                    p-4
+                    sm:p-6
+                    flex
+                    flex-col
+                    items-center
+                    justify-center
+                    gap-4
+                    min-h-[220px]
+                  "
                   spotlightColor="rgba(77, 214, 88, 1)"
                 >
-                  {Icon && (
-                    <Icon className="text-5xl text-green-500 drop-shadow-[0_0_10px_rgba(34,197,94,0.7)]" />
-                  )}
+                  <Icon
+                    className="
+                      text-4xl
+                      sm:text-5xl
+                      text-green-500
+                      drop-shadow-[0_0_10px_rgba(34,197,94,0.7)]
+                    "
+                  />
 
-                  <h2 className="text-center text-2xl font-semibold">
+                  <h2
+                    className="
+                      text-center
+                      text-xl
+                      sm:text-2xl
+                      font-semibold
+                    "
+                  >
                     {steps.title}
                   </h2>
                 </SpotlightCard>
@@ -201,40 +394,71 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="relative mt-40 border-t border-white/10 bg-zinc-950">
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2 w-[60%] h-32 bg-green-500/10 blur-3xl rounded-full" />
+      {/* FOOTER */}
+      <footer className="relative mt-20 border-t border-white/10 bg-zinc-950">
+        <div
+          className="
+            absolute
+            -top-10
+            left-1/2
+            -translate-x-1/2
+            w-[80%]
+            sm:w-[60%]
+            h-32
+            bg-green-500/10
+            blur-3xl
+            rounded-full
+          "
+        />
 
-        <div className="max-w-6xl mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10 text-white">
+        <div
+          className="
+            max-w-6xl
+            mx-auto
+            px-6
+            py-14
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-3
+            gap-10
+          "
+        >
           <div className="flex flex-col gap-4">
             <h2 className="text-2xl font-semibold text-green-500">
               JEJAK SEHAT
             </h2>
+
             <p className="text-sm text-gray-400 leading-relaxed">
-              A simple web app to record your trips, monitor your health, and
-              keep your daily activities organized.
+              A simple web app to record your trips, monitor your health,
+              and keep your daily activities organized.
             </p>
           </div>
 
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Navigation</h3>
+
             <a
               href="#home"
               className="text-gray-400 hover:text-green-400 transition"
             >
               Home
             </a>
+
             <a
               href="#about"
               className="text-gray-400 hover:text-green-400 transition"
             >
               About
             </a>
+
             <a
               href="#features"
               className="text-gray-400 hover:text-green-400 transition"
             >
               Features
             </a>
+
             <a
               href="#steps"
               className="text-gray-400 hover:text-green-400 transition"
@@ -253,14 +477,31 @@ export default function Home() {
 
             <div className="flex gap-4 mt-2">
               <a
-                className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer"
                 href="https://instagram.com/ilham22008"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="
+                  text-gray-400
+                  hover:text-green-400
+                  text-xl
+                  transition
+                "
               >
                 <FaInstagram />
               </a>
+
               <a
-                className="text-gray-400 hover:text-green-400 text-xl transition cursor-pointer"
                 href="https://github.com/Hammm22"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="
+                  text-gray-400
+                  hover:text-green-400
+                  text-xl
+                  transition
+                "
               >
                 <FaGithub />
               </a>
@@ -268,12 +509,22 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col border-t border-white/10 text-center py-4 text-sm text-gray-500">
+        <div
+          className="
+            border-t
+            border-white/10
+            text-center
+            py-4
+            px-4
+            text-sm
+            text-gray-500
+          "
+        >
           © {new Date().getFullYear()} Jejak Sehat. All rights reserved.
-          <br></br>
+          <br />
           Made By Hamm22 A.K.A Ilham Dwi Arsandy
         </div>
       </footer>
-    </>
+    </div>
   );
 }
