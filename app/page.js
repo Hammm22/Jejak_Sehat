@@ -1,6 +1,6 @@
 "use client";
 
-import Aurora from "./components/aurora";
+import dynamic from "next/dynamic";
 import Navbar from "./components/navbar";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
@@ -18,6 +18,11 @@ import {
   FaGithub,
 } from "react-icons/fa6";
 import { IoPersonAdd, IoLogIn } from "react-icons/io5";
+
+const Aurora = dynamic(
+  () => import("./components/aurora"),
+  { ssr: false }
+);
 
 export default function Home() {
   const ref = useRef(null);
@@ -52,9 +57,9 @@ export default function Home() {
       >
         <Navbar />
 
-        <div className="absolute inset-0 -z-10">
-          <Aurora />
-        </div>
+        <div className="absolute inset-0 z-0">
+  <Aurora />
+</div>
 
         <div className="relative z-10 min-h-screen flex flex-col justify-center items-center gap-10 px-4">
           <TextType
