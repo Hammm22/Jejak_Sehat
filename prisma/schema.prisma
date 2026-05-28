@@ -14,18 +14,16 @@ model Catatan {
   waktu       DateTime @map("waktu")
   lokasi      String   @map("lokasi")
   suhu        Int      @map("suhu")
-
-  user User @relation(fields: [nik], references: [nik])
+  user        User     @relation(fields: [nik], references: [nik])
 
   @@map("Catatan")
 }
-  
-model User {
-  nik      Int    @id @map("nik")
-  nama     String @map("nama")
-  password String @map("password")
-  profil   String? @map("profil")
 
+model User {
+  nik      Int       @id @map("nik")
+  nama     String    @map("nama")
+  password String    @map("password")
+  profil   String?   @map("profil")
   catatan  Catatan[]
 
   @@map("User")

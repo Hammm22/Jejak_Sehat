@@ -49,7 +49,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="overflow-x-hidden bg-black text-white">
+    <div className="overflow-x-hidden bg-[#050806] text-emerald-50">
       {/* HERO */}
       <section
         className="relative min-h-screen overflow-hidden"
@@ -58,7 +58,7 @@ export default function Home() {
         <Navbar />
 
         <div className="absolute inset-0 z-0">
-  <Aurora />
+          <Aurora colorStops={["#052e16", "#16a34a", "#bbf7d0"]} amplitude={0.72} blend={0.65} />
 </div>
 
         <div className="relative z-10 min-h-screen flex flex-col justify-center items-center gap-10 px-4">
@@ -99,12 +99,12 @@ export default function Home() {
             <Link href="/login" className="w-full sm:w-auto">
               <button
                 className="
-                  bg-green-500
-                  hover:bg-green-600
+                  bg-emerald-400
+                  hover:bg-emerald-300
                   transition
-                  text-white
+                  text-[#041008]
                   font-medium
-                  rounded-xl
+                  rounded-md
                   px-6
                   py-3
                   text-base
@@ -120,12 +120,14 @@ export default function Home() {
             <a href="#about" className="w-full sm:w-auto">
               <button
                 className="
-                  bg-zinc-700
-                  hover:bg-zinc-600
+                  bg-transparent
+                  hover:bg-emerald-400/10
                   transition
-                  text-white
+                  text-emerald-100
+                  border
+                  border-emerald-400/25
                   font-medium
-                  rounded-xl
+                  rounded-md
                   px-6
                   py-3
                   text-base
@@ -171,13 +173,13 @@ export default function Home() {
               gap-8
               p-6
               sm:p-10
-              bg-[#18181B]
-              rounded-3xl
+              bg-[#0d1511]
+              rounded-lg
               border
-              border-white/10
+              border-emerald-400/15
             "
-            colors={["#ffffff", "#18181B", "#4DD658"]}
-            backgroundColor="#09090B"
+            colors={["#052e16", "#16a34a", "#bbf7d0"]}
+            backgroundColor="#0d1511"
           >
             <h2
               className="
@@ -199,7 +201,7 @@ export default function Home() {
                 text-base
                 sm:text-lg
                 md:text-xl
-                text-gray-400
+                text-emerald-100/65
                 max-w-2xl
                 leading-relaxed
                 px-2
@@ -282,8 +284,7 @@ export default function Home() {
                     className="
                       text-4xl
                       sm:text-5xl
-                      text-green-500
-                      drop-shadow-[0_0_10px_rgba(34,197,94,0.7)]
+                      text-emerald-300
                     "
                   />
 
@@ -377,8 +378,7 @@ export default function Home() {
                     className="
                       text-4xl
                       sm:text-5xl
-                      text-green-500
-                      drop-shadow-[0_0_10px_rgba(34,197,94,0.7)]
+                      text-emerald-300
                     "
                   />
 
@@ -400,22 +400,7 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="relative mt-20 border-t border-white/10 bg-zinc-950">
-        <div
-          className="
-            absolute
-            -top-10
-            left-1/2
-            -translate-x-1/2
-            w-[80%]
-            sm:w-[60%]
-            h-32
-            bg-green-500/10
-            blur-3xl
-            rounded-full
-          "
-        />
-
+      <footer className="relative mt-20 border-t border-emerald-400/15 bg-[#07100b]">
         <div
           className="
             max-w-6xl
@@ -430,11 +415,11 @@ export default function Home() {
           "
         >
           <div className="flex flex-col gap-4">
-            <h2 className="text-2xl font-semibold text-green-500">
+            <h2 className="text-2xl font-semibold text-emerald-300">
               JEJAK SEHAT
             </h2>
 
-            <p className="text-sm text-gray-400 leading-relaxed">
+            <p className="text-sm text-emerald-100/60 leading-relaxed">
               A simple web app to record your trips, monitor your health,
               and keep your daily activities organized.
             </p>
@@ -445,28 +430,28 @@ export default function Home() {
 
             <a
               href="#home"
-              className="text-gray-400 hover:text-green-400 transition"
+              className="text-emerald-100/60 hover:text-emerald-300 transition"
             >
               Home
             </a>
 
             <a
               href="#about"
-              className="text-gray-400 hover:text-green-400 transition"
+              className="text-emerald-100/60 hover:text-emerald-300 transition"
             >
               About
             </a>
 
             <a
               href="#features"
-              className="text-gray-400 hover:text-green-400 transition"
+              className="text-emerald-100/60 hover:text-emerald-300 transition"
             >
               Features
             </a>
 
             <a
               href="#steps"
-              className="text-gray-400 hover:text-green-400 transition"
+              className="text-emerald-100/60 hover:text-emerald-300 transition"
             >
               How To Use
             </a>
@@ -475,7 +460,7 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold">Connect</h3>
 
-            <div className="flex items-center gap-3 text-gray-400">
+            <div className="flex items-center gap-3 text-emerald-100/60">
               <FaLocationDot />
               <span>Indonesia</span>
             </div>
@@ -487,8 +472,8 @@ export default function Home() {
                 rel="noopener noreferrer"
                 aria-label="Instagram"
                 className="
-                  text-gray-400
-                  hover:text-green-400
+                  text-emerald-100/60
+                  hover:text-emerald-300
                   text-xl
                   transition
                 "
@@ -502,8 +487,8 @@ export default function Home() {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
                 className="
-                  text-gray-400
-                  hover:text-green-400
+                  text-emerald-100/60
+                  hover:text-emerald-300
                   text-xl
                   transition
                 "
@@ -517,12 +502,12 @@ export default function Home() {
         <div
           className="
             border-t
-            border-white/10
+            border-emerald-400/15
             text-center
             py-4
             px-4
             text-sm
-            text-gray-500
+            text-emerald-100/45
           "
         >
           © {new Date().getFullYear()} Jejak Sehat. All rights reserved.

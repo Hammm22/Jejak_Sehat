@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import BorderGlow from "../components/glowcard";
 import Layout from "../components/dashboardLayout";
+import toast from "react-hot-toast";
 
 export default function EditForm({ initialData }) {
   const router = useRouter();
@@ -56,14 +56,15 @@ export default function EditForm({ initialData }) {
       );
 
       if (res.ok) {
+        toast.success("Catatan berhasil diupdate");
         router.push("/dashboard");
         router.refresh();
       } else {
-        alert("Gagal update");
+        toast.error("Gagal update");
       }
     } catch (err) {
       console.error(err);
-      alert("Terjadi error");
+      toast.error("Terjadi error");
     } finally {
       setLoading(false);
     }
@@ -74,30 +75,25 @@ export default function EditForm({ initialData }) {
       <main
         className="
           min-h-screen
-          flex
-          items-center
-          justify-center
-          bg-[#09090B]
+          bg-[#050806]
           px-4
-          py-10
+          py-24
         "
       >
-        <div className="w-full max-w-md">
-          <BorderGlow
+        <div className="mx-auto w-full max-w-xl">
+          <section
             className="
               flex
               flex-col
               gap-6
               p-5
               sm:p-8
-              bg-[#18181B]
-              rounded-2xl
+              bg-[#0d1511]
+              rounded-[28px]
               border
-              border-white/10
-              shadow-xl
+              border-emerald-400/15
+              shadow-sm
             "
-            colors={["#ffffff", "#18181B", "#4DD658"]}
-            backgroundColor="#09090B"
           >
             {/* TITLE */}
             <h2
@@ -105,12 +101,14 @@ export default function EditForm({ initialData }) {
                 text-2xl
                 sm:text-3xl
                 font-semibold
-                text-center
-                text-white
+                text-emerald-50
               "
             >
               EDIT CATATAN
             </h2>
+            <p className="text-sm text-emerald-100/55">
+              Perbarui detail perjalanan yang sudah tersimpan.
+            </p>
 
             {/* FORM */}
             <form
@@ -119,7 +117,7 @@ export default function EditForm({ initialData }) {
             >
               {/* NAMA TEMPAT */}
               <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-400">
+                <label className="text-sm text-emerald-100/65">
                   Nama Tempat
                 </label>
 
@@ -133,23 +131,23 @@ export default function EditForm({ initialData }) {
                     w-full
                     px-4
                     py-3
-                    rounded-lg
-                    bg-[#09090B]
+                    rounded-md
+                    bg-[#050806]
                     border
-                    border-white/10
-                    text-white
+                    border-emerald-400/15
+                    text-emerald-50
                     text-sm
                     sm:text-base
                     focus:outline-none
                     focus:ring-2
-                    focus:ring-green-500
+                    focus:ring-emerald-400
                   "
                 />
               </div>
 
               {/* TANGGAL */}
               <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-400">
+                <label className="text-sm text-emerald-100/65">
                   Tanggal
                 </label>
 
@@ -162,23 +160,23 @@ export default function EditForm({ initialData }) {
                     w-full
                     px-4
                     py-3
-                    rounded-lg
-                    bg-[#09090B]
+                    rounded-md
+                    bg-[#050806]
                     border
-                    border-white/10
-                    text-white
+                    border-emerald-400/15
+                    text-emerald-50
                     text-sm
                     sm:text-base
                     focus:outline-none
                     focus:ring-2
-                    focus:ring-green-500
+                    focus:ring-emerald-400
                   "
                 />
               </div>
 
               {/* WAKTU */}
               <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-400">
+                <label className="text-sm text-emerald-100/65">
                   Waktu
                 </label>
 
@@ -191,23 +189,23 @@ export default function EditForm({ initialData }) {
                     w-full
                     px-4
                     py-3
-                    rounded-lg
-                    bg-[#09090B]
+                    rounded-md
+                    bg-[#050806]
                     border
-                    border-white/10
-                    text-white
+                    border-emerald-400/15
+                    text-emerald-50
                     text-sm
                     sm:text-base
                     focus:outline-none
                     focus:ring-2
-                    focus:ring-green-500
+                    focus:ring-emerald-400
                   "
                 />
               </div>
 
               {/* LOKASI */}
               <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-400">
+                <label className="text-sm text-emerald-100/65">
                   Lokasi
                 </label>
 
@@ -221,23 +219,23 @@ export default function EditForm({ initialData }) {
                     w-full
                     px-4
                     py-3
-                    rounded-lg
-                    bg-[#09090B]
+                    rounded-md
+                    bg-[#050806]
                     border
-                    border-white/10
-                    text-white
+                    border-emerald-400/15
+                    text-emerald-50
                     text-sm
                     sm:text-base
                     focus:outline-none
                     focus:ring-2
-                    focus:ring-green-500
+                    focus:ring-emerald-400
                   "
                 />
               </div>
 
               {/* SUHU */}
               <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-400">
+                <label className="text-sm text-emerald-100/65">
                   Suhu
                 </label>
 
@@ -251,16 +249,16 @@ export default function EditForm({ initialData }) {
                     w-full
                     px-4
                     py-3
-                    rounded-lg
-                    bg-[#09090B]
+                    rounded-md
+                    bg-[#050806]
                     border
-                    border-white/10
-                    text-white
+                    border-emerald-400/15
+                    text-emerald-50
                     text-sm
                     sm:text-base
                     focus:outline-none
                     focus:ring-2
-                    focus:ring-green-500
+                    focus:ring-emerald-400
                   "
                 />
               </div>
@@ -273,9 +271,9 @@ export default function EditForm({ initialData }) {
                   mt-2
                   w-full
                   py-3
-                  rounded-lg
-                  bg-green-500
-                  text-black
+                  rounded-md
+                  bg-emerald-400
+                  text-[#041008]
                   font-semibold
                   text-sm
                   sm:text-base
@@ -289,7 +287,7 @@ export default function EditForm({ initialData }) {
                 {loading ? "Updating..." : "Update"}
               </button>
             </form>
-          </BorderGlow>
+          </section>
         </div>
       </main>
     </Layout>

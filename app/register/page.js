@@ -63,7 +63,7 @@ export default function Register() {
         flex
         items-center
         justify-center
-        bg-[#09090B]
+        bg-[#050806]
         px-4
         py-10
       "
@@ -76,14 +76,14 @@ export default function Register() {
             gap-6
             p-5
             sm:p-8
-            bg-[#18181B]
-            rounded-2xl
+            bg-[#0d1511]
+            rounded-lg
             border
-            border-white/10
-            shadow-xl
+            border-emerald-400/15
+            shadow-sm
           "
-          colors={["#ffffff", "#18181B", "#4DD658"]}
-          backgroundColor="#09090B"
+          colors={["#052e16", "#16a34a", "#bbf7d0"]}
+          backgroundColor="#0d1511"
         >
           {/* TITLE */}
           <h2
@@ -92,7 +92,7 @@ export default function Register() {
               sm:text-3xl
               font-semibold
               text-center
-              text-white
+              text-emerald-50
             "
           >
             REGISTER
@@ -105,7 +105,7 @@ export default function Register() {
           >
             {/* NIK */}
             <div className="flex flex-col gap-2 text-left">
-              <label className="text-sm text-gray-400">
+              <label className="text-sm text-emerald-100/65">
                 NIK
               </label>
 
@@ -118,23 +118,23 @@ export default function Register() {
                   w-full
                   px-4
                   py-3
-                  rounded-lg
-                  bg-[#09090B]
+                  rounded-md
+                  bg-[#050806]
                   border
-                  border-white/10
-                  text-white
+                  border-emerald-400/15
+                  text-emerald-50
                   text-sm
                   sm:text-base
                   focus:outline-none
                   focus:ring-2
-                  focus:ring-green-500
+                  focus:ring-emerald-400
                 "
               />
             </div>
 
             {/* USERNAME */}
             <div className="flex flex-col gap-2 text-left">
-              <label className="text-sm text-gray-400">
+              <label className="text-sm text-emerald-100/65">
                 Username
               </label>
 
@@ -147,23 +147,23 @@ export default function Register() {
                   w-full
                   px-4
                   py-3
-                  rounded-lg
-                  bg-[#09090B]
+                  rounded-md
+                  bg-[#050806]
                   border
-                  border-white/10
-                  text-white
+                  border-emerald-400/15
+                  text-emerald-50
                   text-sm
                   sm:text-base
                   focus:outline-none
                   focus:ring-2
-                  focus:ring-green-500
+                  focus:ring-emerald-400
                 "
               />
             </div>
 
             {/* PASSWORD */}
             <div className="flex flex-col gap-2 text-left">
-              <label className="text-sm text-gray-400">
+              <label className="text-sm text-emerald-100/65">
                 Password
               </label>
 
@@ -176,23 +176,23 @@ export default function Register() {
                   w-full
                   px-4
                   py-3
-                  rounded-lg
-                  bg-[#09090B]
+                  rounded-md
+                  bg-[#050806]
                   border
-                  border-white/10
-                  text-white
+                  border-emerald-400/15
+                  text-emerald-50
                   text-sm
                   sm:text-base
                   focus:outline-none
                   focus:ring-2
-                  focus:ring-green-500
+                  focus:ring-emerald-400
                 "
               />
             </div>
 
             {/* IMAGE */}
             <div className="flex flex-col gap-3 items-center">
-              <label className="text-sm text-gray-400 self-start">
+              <label className="text-sm text-emerald-100/65 self-start">
                 Photo
               </label>
 
@@ -222,7 +222,7 @@ export default function Register() {
                       rounded-full
                       object-cover
                       border
-                      border-white/10
+                      border-emerald-400/15
                     "
                   />
                 ) : (
@@ -231,9 +231,9 @@ export default function Register() {
                       w-full
                       h-full
                       rounded-full
-                      bg-[#09090B]
+                      bg-[#050806]
                       border
-                      border-white/10
+                      border-emerald-400/15
                       flex
                       items-center
                       justify-center
@@ -277,7 +277,7 @@ export default function Register() {
             <p
               className="
                 text-sm
-                text-gray-400
+                text-emerald-100/60
                 text-center
                 sm:text-left
               "
@@ -286,9 +286,9 @@ export default function Register() {
               <a
                 href="/login"
                 className="
-                  text-green-500
+                  text-emerald-300
                   ml-1
-                  hover:text-green-400
+                  hover:text-emerald-200
                   transition
                 "
               >
@@ -303,9 +303,9 @@ export default function Register() {
                 mt-2
                 w-full
                 py-3
-                rounded-lg
-                bg-green-500
-                text-black
+                rounded-md
+                bg-emerald-400
+                text-[#041008]
                 font-semibold
                 text-sm
                 sm:text-base

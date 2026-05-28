@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import BorderGlow from "../components/glowcard";
 import Layout from "../components/dashboardLayout";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function CatatanForm() {
   const router = useRouter();
@@ -42,39 +42,38 @@ export default function CatatanForm() {
       });
 
       if (res.ok) {
+        toast.success("Catatan berhasil disimpan");
         router.push("/dashboard");
         router.refresh();
       } else {
         const err = await res.json().catch(() => ({}));
-        alert(err?.error || "Gagal simpan");
+        toast.error(err?.error || "Gagal simpan");
       }
     } catch (err) {
       console.error(err);
-      alert("Terjadi error");
+      toast.error("Terjadi error");
     }
   };
 
   return (
     <Layout>
-      <main className="min-h-screen flex items-center justify-center bg-[#09090B]">
-        <div className="w-full max-w-md h-auto">
-          <BorderGlow
-            className="flex flex-col gap-6 p-8 bg-[#18181B] rounded-2xl border border-white/10 shadow-xl"
-            colors={["#ffffff", "#18181B", "#4DD658"]}
-            backgroundColor="#09090B"
-          >
-            <h2 className="text-3xl mb-1.5 font-semibold text-center text-white">
+      <main className="min-h-screen bg-[#050806] px-4 py-24">
+        <div className="mx-auto w-full max-w-xl">
+          <section className="rounded-[28px] border border-emerald-400/15 bg-[#0d1511] p-6 sm:p-8">
+            <h2 className="text-2xl sm:text-3xl font-semibold text-emerald-50">
               INPUT CATATAN
             </h2>
-            <br></br>
+            <p className="mt-2 text-sm text-emerald-100/55">
+              Tambahkan catatan perjalanan baru.
+            </p>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+            <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-5">
               <input
                 name="nama"
                 type="text"
                 placeholder="Nama Tempat"
                 onChange={handleChange}
-                className="px-4 py-2 rounded-lg bg-[#09090B] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-center"
+                className="px-4 py-3 rounded-md bg-[#050806] border border-emerald-400/15 text-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-100/35"
               />
 
               {/* Tanggal */}
@@ -82,14 +81,14 @@ export default function CatatanForm() {
                 name="tanggal"
                 type="date"
                 onChange={handleChange}
-                className="px-4 py-2 rounded-lg bg-[#09090B] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-center"
+                className="px-4 py-3 rounded-md bg-[#050806] border border-emerald-400/15 text-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-400"
               />
 
               <input
                 name="waktu"
                 type="time"
                 onChange={handleChange}
-                className="px-4 py-2 rounded-lg bg-[#09090B] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-center "
+                className="px-4 py-3 rounded-md bg-[#050806] border border-emerald-400/15 text-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-400"
               />
 
               <input
@@ -97,7 +96,7 @@ export default function CatatanForm() {
                 type="text"
                 placeholder="Lokasi Tempat"
                 onChange={handleChange}
-                className="px-4 py-2 rounded-lg bg-[#09090B] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-center"
+                className="px-4 py-3 rounded-md bg-[#050806] border border-emerald-400/15 text-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-100/35"
               />
 
               <input
@@ -105,17 +104,17 @@ export default function CatatanForm() {
                 type="number"
                 placeholder="Suhu Tempat"
                 onChange={handleChange}
-                className="px-4 py-2 rounded-lg bg-[#09090B] border border-white/10 text-white focus:outline-none focus:ring-2 focus:ring-green-500 placeholder:text-center"
+                className="px-4 py-3 rounded-md bg-[#050806] border border-emerald-400/15 text-emerald-50 focus:outline-none focus:ring-2 focus:ring-emerald-400 placeholder:text-emerald-100/35"
               />
 
               <button
                 type="submit"
-                className="mt-4 py-2 rounded-lg bg-green-500 text-black font-semibold hover:opacity-90 transition"
+                className="mt-2 py-3 rounded-md bg-emerald-400 text-[#041008] font-semibold hover:bg-emerald-300 transition cursor-pointer"
               >
                 Simpan
               </button>
             </form>
-          </BorderGlow>
+          </section>
         </div>
       </main>
     </Layout>

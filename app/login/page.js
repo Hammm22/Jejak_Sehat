@@ -4,6 +4,7 @@ import BorderGlow from "../components/glowcard";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [nama, setNama] = useState("");
@@ -25,14 +26,15 @@ export default function Login() {
       });
 
       if (!res?.error) {
+        toast.success("Login berhasil");
         router.push("/dashboard");
         router.refresh();
       } else {
-        alert("Nama atau password salah");
+        toast.error("Nama atau password salah");
       }
     } catch (err) {
       console.error(err);
-      alert("Terjadi error");
+      toast.error("Terjadi error");
     } finally {
       setLoading(false);
     }
@@ -45,7 +47,7 @@ export default function Login() {
         flex
         items-center
         justify-center
-        bg-[#09090B]
+        bg-[#050806]
         px-4
         py-10
       "
@@ -58,14 +60,14 @@ export default function Login() {
             gap-6
             p-5
             sm:p-8
-            bg-[#18181B]
-            rounded-2xl
+            bg-[#0d1511]
+            rounded-lg
             border
-            border-white/10
-            shadow-xl
+            border-emerald-400/15
+            shadow-sm
           "
-          colors={["#ffffff", "#18181B", "#4DD658"]}
-          backgroundColor="#09090B"
+          colors={["#052e16", "#16a34a", "#bbf7d0"]}
+          backgroundColor="#0d1511"
         >
           {/* TITLE */}
           <h2
@@ -74,7 +76,7 @@ export default function Login() {
               sm:text-3xl
               font-semibold
               text-center
-              text-white
+              text-emerald-50
             "
           >
             LOGIN
@@ -87,7 +89,7 @@ export default function Login() {
           >
             {/* USERNAME */}
             <div className="flex flex-col gap-2 text-left">
-              <label className="text-sm text-gray-400">
+              <label className="text-sm text-emerald-100/65">
                 Nama
               </label>
 
@@ -100,21 +102,21 @@ export default function Login() {
                   w-full
                   px-4
                   py-3
-                  rounded-lg
-                  bg-[#09090B]
+                  rounded-md
+                  bg-[#050806]
                   border
-                  border-white/10
-                  text-white
+                  border-emerald-400/15
+                  text-emerald-50
                   text-sm
                   sm:text-base
                   focus:outline-none
                   focus:ring-2
-                  focus:ring-green-500
+                  focus:ring-emerald-400
                 "
               />
             </div>
             <div className="flex flex-col gap-2 text-left">
-              <label className="text-sm text-gray-400">
+              <label className="text-sm text-emerald-100/65">
                 Password
               </label>
 
@@ -127,16 +129,16 @@ export default function Login() {
                   w-full
                   px-4
                   py-3
-                  rounded-lg
-                  bg-[#09090B]
+                  rounded-md
+                  bg-[#050806]
                   border
-                  border-white/10
-                  text-white
+                  border-emerald-400/15
+                  text-emerald-50
                   text-sm
                   sm:text-base
                   focus:outline-none
                   focus:ring-2
-                  focus:ring-green-500
+                  focus:ring-emerald-400
                 "
               />
             </div>
@@ -144,18 +146,18 @@ export default function Login() {
             <p
               className="
                 text-sm
-                text-gray-400
+                text-emerald-100/60
                 text-center
                 sm:text-left
               "
             >
-              Doesn't have an account?
+              Don&apos;t have an account?
               <a
                 href="/register"
                 className="
-                  text-green-500
+                  text-emerald-300
                   ml-1
-                  hover:text-green-400
+                  hover:text-emerald-200
                   transition
                 "
               >
@@ -171,9 +173,9 @@ export default function Login() {
                 mt-2
                 w-full
                 py-3
-                rounded-lg
-                bg-green-500
-                text-black
+                rounded-md
+                bg-emerald-400
+                text-[#041008]
                 font-semibold
                 text-sm
                 sm:text-base

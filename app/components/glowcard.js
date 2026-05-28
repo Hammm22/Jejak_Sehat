@@ -95,11 +95,11 @@ const BorderGlow = ({
   backgroundColor = "#120F17",
   borderRadius = 28,
   glowRadius = 40,
-  glowIntensity = 1.0,
+  glowIntensity = 0.45,
   coneSpread = 25,
   animated = false,
-  colors = ["#c084fc", "#f472b6", "#38bdf8"],
-  fillOpacity = 0.5,
+  colors = ["#052e16", "#16a34a", "#bbf7d0"],
+  fillOpacity = 0.22,
 }) => {
   const cardRef = useRef(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -157,37 +157,41 @@ const BorderGlow = ({
     if (!animated) return;
     const angleStart = 110;
     const angleEnd = 465;
-    setSweepActive(true);
-    setCursorAngle(angleStart);
+    const frame = requestAnimationFrame(() => {
+      setSweepActive(true);
+      setCursorAngle(angleStart);
 
-    animateValue({ duration: 500, onUpdate: (v) => setEdgeProximity(v / 100) });
-    animateValue({
-      ease: easeInCubic,
-      duration: 1500,
-      end: 50,
-      onUpdate: (v) => {
-        setCursorAngle((angleEnd - angleStart) * (v / 100) + angleStart);
-      },
+      animateValue({ duration: 500, onUpdate: (v) => setEdgeProximity(v / 100) });
+      animateValue({
+        ease: easeInCubic,
+        duration: 1500,
+        end: 50,
+        onUpdate: (v) => {
+          setCursorAngle((angleEnd - angleStart) * (v / 100) + angleStart);
+        },
+      });
+      animateValue({
+        ease: easeOutCubic,
+        delay: 1500,
+        duration: 2250,
+        start: 50,
+        end: 100,
+        onUpdate: (v) => {
+          setCursorAngle((angleEnd - angleStart) * (v / 100) + angleStart);
+        },
+      });
+      animateValue({
+        ease: easeInCubic,
+        delay: 2500,
+        duration: 1500,
+        start: 100,
+        end: 0,
+        onUpdate: (v) => setEdgeProximity(v / 100),
+        onEnd: () => setSweepActive(false),
+      });
     });
-    animateValue({
-      ease: easeOutCubic,
-      delay: 1500,
-      duration: 2250,
-      start: 50,
-      end: 100,
-      onUpdate: (v) => {
-        setCursorAngle((angleEnd - angleStart) * (v / 100) + angleStart);
-      },
-    });
-    animateValue({
-      ease: easeInCubic,
-      delay: 2500,
-      duration: 1500,
-      start: 100,
-      end: 0,
-      onUpdate: (v) => setEdgeProximity(v / 100),
-      onEnd: () => setSweepActive(false),
-    });
+
+    return () => cancelAnimationFrame(frame);
   }, [animated]);
 
   const colorSensitivity = edgeSensitivity + 20;
@@ -216,13 +220,12 @@ const BorderGlow = ({
       onPointerMove={handlePointerMove}
       onPointerEnter={() => setIsHovered(true)}
       onPointerLeave={() => setIsHovered(false)}
-      className={`relative grid isolate border border-white/15 ${className}`}
+      className={`relative grid isolate border border-emerald-400/15 ${className}`}
       style={{
         background: backgroundColor,
         borderRadius: `${borderRadius}px`,
         transform: "translate3d(0, 0, 0.01px)",
-        boxShadow:
-          "rgba(0,0,0,0.1) 0 1px 2px, rgba(0,0,0,0.1) 0 2px 4px, rgba(0,0,0,0.1) 0 4px 8px, rgba(0,0,0,0.1) 0 8px 16px, rgba(0,0,0,0.1) 0 16px 32px, rgba(0,0,0,0.1) 0 32px 64px",
+        boxShadow: "0 1px 2px rgba(0,0,0,0.18)",
       }}
     >
       {/* mesh gradient border */}

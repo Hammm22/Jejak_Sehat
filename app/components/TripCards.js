@@ -1,13 +1,15 @@
 "use client";
-import GlowCard from "./glowcard";
 import { IoPencil, IoTrash, IoEye } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function TripCards({ data }) {
-  if (!data.length) {
-    return <p className="text-gray-400">Belum ada data</p>;
-  }
   const router = useRouter();
+
+  if (!data.length) {
+    return <p className="text-emerald-100/60">Belum ada data</p>;
+  }
+
   const handleDelete = async (id) => {
     const confirmDelete = confirm("Yakin mau hapus data ini?");
     if (!confirmDelete) return;
@@ -18,60 +20,68 @@ export default function TripCards({ data }) {
       });
 
       if (res.ok) {
-        alert("Berhasil dihapus");
+        toast.success("Catatan berhasil dihapus");
         router.refresh();
       } else {
-        alert("Gagal hapus");
+        toast.error("Gagal hapus");
       }
     } catch (err) {
       console.error(err);
-      alert("Terjadi error");
+      toast.error("Terjadi error");
     }
   };
   return (
-    <div className="grid md:grid-cols-3 gap-6">
+    <div className="grid md:grid-cols-3 gap-5">
       {data.map((item) => (
-        <GlowCard
-          colors={["#ffffff", "#18181B", "#4DD658"]}
+        <article
           key={item.id_catatan}
-          className="p-5 rounded-2xl bg-[#18181B] border border-white/10 text-center justify-center"
+          className="rounded-[28px] border border-emerald-400/15 bg-[#0d1511] p-5"
         >
-          <h2 className="text-lg font-semibold">{item.nama_tempat}</h2>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h2 className="text-lg font-semibold text-emerald-50">
+                {item.nama_tempat}
+              </h2>
 
-          <p className="text-sm text-gray-400">
-            {new Date(item.tanggal).toLocaleDateString()}
-          </p>
+              <p className="mt-1 text-sm text-emerald-100/55">
+                {new Date(item.tanggal).toLocaleDateString()}
+              </p>
+            </div>
 
-          <div className="mt-3 text-sm text-gray-300 space-y-1">
+            <span className="rounded-md border border-emerald-400/15 bg-emerald-400/10 px-2 py-1 text-xs text-emerald-200">
+              {item.suhu}°C
+            </span>
+          </div>
+
+          <div className="mt-4 text-sm text-emerald-50/75">
             <p>
               Lokasi: <strong>{item.lokasi}</strong>
             </p>
-            <p>
-              Suhu: <strong>{item.suhu}°C</strong>
-            </p>
-            <br></br>
-            <div className="flex flex-row justify-between gap-4">
+            <div className="mt-5 flex flex-row justify-end gap-2">
               <button
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#18181B] border border-white/10 text-white hover:bg-green-500 hover:text-black transition hover:cursor-pointer"
+                className="flex h-9 w-9 items-center justify-center rounded-md bg-[#050806] border border-emerald-400/15 text-emerald-50 hover:bg-emerald-400 hover:text-[#041008] transition hover:cursor-pointer"
                 onClick={() => router.push(`/view/${item.id_catatan}`)}
+                aria-label="Lihat catatan"
               >
                 <IoEye size={20} />
               </button>
               <button
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#18181B] border border-white/10 text-white hover:bg-green-500 hover:text-black transition hover:cursor-pointer"
+                className="flex h-9 w-9 items-center justify-center rounded-md bg-[#050806] border border-emerald-400/15 text-emerald-50 hover:bg-emerald-400 hover:text-[#041008] transition hover:cursor-pointer"
                 onClick={() => router.push(`/edit/${item.id_catatan}`)}
+                aria-label="Edit catatan"
               >
                 <IoPencil size={20} />
               </button>
               <button
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[#18181B] border border-white/10 text-white hover:bg-red-500 hover:text-black transition hover:cursor-pointer"
+                className="flex h-9 w-9 items-center justify-center rounded-md bg-[#050806] border border-red-400/15 text-red-100 hover:bg-red-500 hover:text-[#120304] transition hover:cursor-pointer"
                 onClick={() => handleDelete(item.id_catatan)}
+                aria-label="Hapus catatan"
               >
                 <IoTrash size={20} />
               </button>
             </div>
           </div>
-        </GlowCard>
+        </article>
       ))}
     </div>
   );

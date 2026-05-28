@@ -1,6 +1,4 @@
 "use client";
-import Card from "./glowcard";
-
 import {
   BarChart,
   Bar,
@@ -13,57 +11,55 @@ import {
 
 export default function WeeklyChart({ data }) {
   return (
-    <Card colors={["#ffffff", "#18181B", "#4DD658"]} backgroundColor="#09090B">
-      <div className="relative z-10 p-4">
-        <div className="h-75">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={data}>
-              <CartesianGrid
-                strokeDasharray="3 3"
-                vertical={false}
-                stroke="#27272a"
-              />
+    <div className="p-1">
+      <div className="h-75">
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart data={data}>
+            <CartesianGrid
+              strokeDasharray="3 3"
+              vertical={false}
+              stroke="#163225"
+            />
 
-              <XAxis
-                dataKey="day"
-                stroke="#a1a1aa"
-                tick={{ fill: "#a1a1aa", fontSize: 12 }}
-              />
+            <XAxis
+              dataKey="day"
+              stroke="#9fceb2"
+              tick={{ fill: "#9fceb2", fontSize: 12 }}
+            />
 
-              <YAxis
-                stroke="#a1a1aa"
-                tick={{ fill: "#a1a1aa", fontSize: 12 }}
-                allowDecimals={false}
-              />
+            <YAxis
+              stroke="#9fceb2"
+              tick={{ fill: "#9fceb2", fontSize: 12 }}
+              allowDecimals={false}
+            />
 
-              <Tooltip
-                cursor={{ fill: "rgba(34,197,94,0.1)" }}
-                contentStyle={{
-                  backgroundColor: "#18181B",
-                  border: "1px solid rgba(255,255,255,0.1)",
-                  borderRadius: "10px",
-                  color: "white",
-                }}
-                labelStyle={{ color: "#a1a1aa" }}
-              />
+            <Tooltip
+              cursor={{ fill: "rgba(34,197,94,0.1)" }}
+              contentStyle={{
+                backgroundColor: "#0d1511",
+                border: "1px solid rgba(74,222,128,0.16)",
+                borderRadius: "6px",
+                color: "white",
+              }}
+              labelStyle={{ color: "#9fceb2" }}
+            />
 
-              <defs>
-                <linearGradient id="colorTrips" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#22c55e" stopOpacity={0.9} />
-                  <stop offset="95%" stopColor="#22c55e" stopOpacity={0.2} />
-                </linearGradient>
-              </defs>
+            <defs>
+              <linearGradient id="colorTrips" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#22c55e" stopOpacity={0.9} />
+                <stop offset="95%" stopColor="#22c55e" stopOpacity={0.2} />
+              </linearGradient>
+            </defs>
 
-              <Bar
-                dataKey="total"
-                fill="url(#colorTrips)"
-                radius={[10, 10, 0, 0]}
-                animationDuration={800}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
+            <Bar
+              dataKey="total"
+              fill="url(#colorTrips)"
+              radius={[6, 6, 0, 0]}
+              animationDuration={800}
+            />
+          </BarChart>
+        </ResponsiveContainer>
       </div>
-    </Card>
+    </div>
   );
 }
